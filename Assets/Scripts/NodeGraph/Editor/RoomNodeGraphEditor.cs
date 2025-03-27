@@ -1,18 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
-public class NewBehaviourScript : MonoBehaviour
+public class RoomNodeGraphEditor : EditorWindow
 {
-    // Start is called before the first frame update
-    void Start()
+    private GUIStyle roomNodeStyle;
+
+    //Node layout value
+    private const float nodeHeight = 75f;
+    private const float nodeWidth = 160f;
+    private const int nodePadding = 25;
+    private const int nodeBorder = 12;
+
+   [MenuItem("Room Node Graph Editor", menuItem = "Window/Dungeon Editor/Room Node Graph Editor")]
+   private static void OpenWindow()
     {
-        
+        GetWindow<RoomNodeGraphEditor>("Room Node Graph Editor");
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
+        //Define node layout style
+        roomNodeStyle = new GUIStyle();
+        roomNodeStyle.normal.background = EditorGUIUtility.Load("node1") as Texture2D;
+        roomNodeStyle.normal.textColor = Color.white;
+        roomNodeStyle.padding = new RectOffset(nodePadding, nodePadding, nodePadding, nodePadding);
+        roomNodeStyle.border = new RectOffset(nodeBorder, nodeBorder, nodeBorder, nodeBorder);
+    }
+
+
+    /// <summary>
+    /// Draw Editor GUI
+    /// </summary>
+    private void OnGUI()
+    {
+
+        GUILayout.BeginArea(new Rect(new Vector2(100f,100f), new Vector2(nodeWidth,nodeHeight)), roomNodeStyle);
+        EditorGUILayout.LabelField("Node 1");
+        GUILayout.EndArea();
+
     }
 }
