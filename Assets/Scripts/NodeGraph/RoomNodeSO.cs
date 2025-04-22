@@ -116,6 +116,11 @@ public class RoomNodeSO : ScriptableObject
         {
             ProcessLeftClickDownEvent();
         }
+        // is Right click down
+        else if (currentEvent.button == 1)
+        {
+            ProcessRightClickDownEvent(currentEvent);
+        }
     }
 
     /// <summary>
@@ -134,6 +139,14 @@ public class RoomNodeSO : ScriptableObject
         {
             isSelected = false;
         }
+    }
+
+    /// <summary>
+    /// Process Right Click Down Event
+    /// </summary>
+    private void ProcessRightClickDownEvent(Event currentEvent)
+    {
+        roomNodeGraph.SetNodeToDrawConnectionLineFrom(this, currentEvent.mousePosition);
     }
 
     /// <summary>
@@ -177,6 +190,24 @@ public class RoomNodeSO : ScriptableObject
     {
         rect.position += delta;
         EditorUtility.SetDirty(this);
+    }
+
+    /// <summary>
+    /// Add childID to the room node (return true if the node has been added, false otherwise)
+    /// </summary>
+    public bool AddChildRoomNodeIDToRoomNode(string childID)
+    {
+        childRoomNodeIDList.Add(childID);
+        return true;
+    }
+
+    /// <summary>
+    /// Add parentID to the room node (return true if the node has been added, false otherwise)
+    /// </summary>
+    public bool AddParentRoomNodeIDToRoomNode(string parentID)
+    {
+        parentRoomNodeIDList.Add(parentID);
+        return true;
     }
 
 #endif
