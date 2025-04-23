@@ -20,8 +20,8 @@ public class RoomNodeGraphEditor : EditorWindow
     private const float connectingLineWidth = 3f;
     private const float connectingLineArrowSize = 6f;
 
-   [MenuItem("Room Node Graph Editor", menuItem = "Window/Dungeon Editor/Room Node Graph Editor")]
-   private static void OpenWindow()
+    [MenuItem("Room Node Graph Editor", menuItem = "Window/Dungeon Editor/Room Node Graph Editor")]
+    private static void OpenWindow()
     {
         GetWindow<RoomNodeGraphEditor>("Room Node Graph Editor");
     }
@@ -43,7 +43,7 @@ public class RoomNodeGraphEditor : EditorWindow
         roomNodeSelectedStyle.normal.background = EditorGUIUtility.Load("node1 on") as Texture2D;
         roomNodeSelectedStyle.normal.textColor = Color.white;
         roomNodeSelectedStyle.padding = new RectOffset(nodePadding, nodePadding, nodePadding, nodePadding);
-        roomNodeSelectedStyle.border = new RectOffset(nodeBorder, nodeBorder, nodeBorder, nodeBorder); 
+        roomNodeSelectedStyle.border = new RectOffset(nodeBorder, nodeBorder, nodeBorder, nodeBorder);
 
         //Load Room Node Type List
         roomNodeTypeList = GameResources.Instance.roomNodeTypeList;
@@ -136,7 +136,7 @@ public class RoomNodeGraphEditor : EditorWindow
     /// </summary>
     private RoomNodeSO IsMouseOverRoomNode(Event currentEvent)
     {
-        for (int i = currentRoomNodeGraph.roomNodeList.Count - 1; i >=0; i--)
+        for (int i = currentRoomNodeGraph.roomNodeList.Count - 1; i >= 0; i--)
         {
             if (currentRoomNodeGraph.roomNodeList[i].rect.Contains(currentEvent.mousePosition))
             {
@@ -190,7 +190,7 @@ public class RoomNodeGraphEditor : EditorWindow
             ClearAllSelectedRoomNodes();
         }
     }
-    
+
     /// <summary>
     /// Show the context menu
     /// </summary>
@@ -218,7 +218,7 @@ public class RoomNodeGraphEditor : EditorWindow
 
         CreateRoomNode(mousePositionObject, roomNodeTypeList.list.Find(x => x.isNone));
     }
-    
+
     /// <summary>
     /// Create a room node at mouse position - overload to also pass in RoomNodeType
     /// </summary>
@@ -249,7 +249,7 @@ public class RoomNodeGraphEditor : EditorWindow
     /// </summary>
     private void ClearAllSelectedRoomNodes()
     {
-        foreach(RoomNodeSO roomNode in currentRoomNodeGraph.roomNodeList)
+        foreach (RoomNodeSO roomNode in currentRoomNodeGraph.roomNodeList)
         {
             if (roomNode.isSelected)
             {
@@ -265,7 +265,7 @@ public class RoomNodeGraphEditor : EditorWindow
     /// </summary>
     private void SelectAllRoomNodes()
     {
-        foreach(RoomNodeSO roomNode in currentRoomNodeGraph.roomNodeList)
+        foreach (RoomNodeSO roomNode in currentRoomNodeGraph.roomNodeList)
         {
             roomNode.isSelected = true;
         }
@@ -303,7 +303,7 @@ public class RoomNodeGraphEditor : EditorWindow
     private void ProcessMouseDragEvent(Event currentEvent)
     {
         //process right click drag event - draw line
-        if(currentEvent.button == 1)
+        if (currentEvent.button == 1)
         {
             ProcessRightMouseDragEvent(currentEvent);
         }
@@ -314,7 +314,7 @@ public class RoomNodeGraphEditor : EditorWindow
     /// </summary>
     private void ProcessRightMouseDragEvent(Event currentEvent)
     {
-        if(currentRoomNodeGraph.roomNodeToDrawLineFrom != null)
+        if (currentRoomNodeGraph.roomNodeToDrawLineFrom != null)
         {
             DragConnectingLine(currentEvent.delta);
             GUI.changed = true;
