@@ -332,7 +332,7 @@ public class RoomNodeGraphEditor : EditorWindow
                         roomNode.RemoveChildRoomNodeIDFromRoomNode(childRoomNode.id);
 
                         // Remove parentID from child room node
-                        roomNode.RemoveParentRoomNodeIDFromRoomNode(roomNode.id);
+                        childRoomNode.RemoveParentRoomNodeIDFromRoomNode(roomNode.id);
                     }
                 }
             }
