@@ -22,9 +22,11 @@ public class GameResources : MonoBehaviour
     [Space(10)]
     [Header("DUNGEON")]
     #endregion
-    #region Tooltip
-    [Header("Populate with RoomNodeTypeListSO")]
-    #endregion
-
     public RoomNodeTypeListSO roomNodeTypeList;
+
+    #region MATERIALS
+    [Space(10)]
+    [Header("MATERIALS")]
+    #endregion
+    public Material dimmedMaterial;
 }
