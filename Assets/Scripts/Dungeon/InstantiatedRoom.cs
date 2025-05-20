@@ -34,6 +34,8 @@ public class InstantiatedRoom : MonoBehaviour
     {
         PopulateTilemapMemberVariable(gameObject);
 
+        BlockOffUnusedDoorWays();
+
         DisableCollisionTilemapRenderer();
     }
 
@@ -77,6 +79,110 @@ public class InstantiatedRoom : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Block off unused doorway
+    /// </summary>
+    private void BlockOffUnusedDoorWays()
+    {
+        foreach (Doorway doorway in room.doorWayList)
+        {
+            if (doorway.isConnected)
+                continue;
+
+            if (collisionTilemap != null)
+            {
+                BlockADoorWayTilemapLayer(collisionTilemap, doorway);
+            }
+
+            if (minimapTilemap != null)
+            {
+                BlockADoorWayTilemapLayer(minimapTilemap, doorway);
+            }
+
+            if (frontTilemap != null)
+            {
+                BlockADoorWayTilemapLayer(frontTilemap, doorway);
+            }
+
+            if (decoration1Tilemap != null)
+            {
+                BlockADoorWayTilemapLayer(decoration1Tilemap, doorway);
+            }
+
+            if (decoration2Tilemap != null)
+            {
+                BlockADoorWayTilemapLayer(decoration2Tilemap, doorway);
+            }
+
+            if (groundTilemap != null)
+            {
+                BlockADoorWayTilemapLayer(groundTilemap, doorway);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Block a doorway on tilemap layer
+    /// </summary>
+    private void BlockADoorWayTilemapLayer(Tilemap tilemap, Doorway doorway)
+    {
+        switch (doorway.orientation)
+        {
+            case Orientation.east:
+            case Orientation.west:
+                BlockDoorWayVertically(tilemap, doorway);
+                break;
+
+            case Orientation.north:
+            case Orientation.south:
+                BlockDoorWayHorizontally(tilemap, doorway);
+                break;
+
+            case Orientation.none:
+                break;
+        }
+    }
+
+    /// <summary>
+    /// Block Doorway vertically
+    /// </summary>
+    private void BlockDoorWayVertically(Tilemap tilemap, Doorway doorway)
+    {
+        Vector2Int startPosition = doorway.doorwayStartCopyPosition;
+
+        for (int yPos = 0; yPos < doorway.doorwayCopyTileHeight; yPos++)
+        {
+            for (int xPos = 0; xPos < doorway.doorwayCopyTileWidth; xPos++)
+            {
+                Matrix4x4 transformMatrix = tilemap.GetTransformMatrix(new Vector3Int(startPosition.x + xPos, startPosition.y - yPos, 0));
+
+                tilemap.SetTile(new Vector3Int(startPosition.x + xPos, startPosition.y - 1 - yPos, 0), tilemap.GetTile(new Vector3Int(startPosition.x + xPos, startPosition.y - yPos, 0)));
+
+                tilemap.SetTransformMatrix(new Vector3Int(startPosition.x + xPos, startPosition.y - 1 - yPos, 0), transformMatrix);
+            }
+        }
+
+    }
+
+    /// <summary>
+    /// Block Doorway Horizontally
+    /// </summary>
+    private void BlockDoorWayHorizontally(Tilemap tilemap, Doorway doorway)
+    {
+        Vector2Int startPosition = doorway.doorwayStartCopyPosition;
+
+        for (int xPos = 0; xPos < doorway.doorwayCopyTileWidth; xPos++)
+        {
+            for(int yPos = 0; yPos < doorway.doorwayCopyTileHeight; yPos++)
+            {
+                Matrix4x4 transformMatrix = tilemap.GetTransformMatrix(new Vector3Int(startPosition.x + xPos, startPosition.y - yPos, 0));
+
+                tilemap.SetTile(new Vector3Int(startPosition.x + 1 + xPos, startPosition.y - yPos, 0), tilemap.GetTile(new Vector3Int(startPosition.x + xPos, startPosition.y - yPos, 0)));
+
+                tilemap.SetTransformMatrix(new Vector3Int(startPosition.x + 1 + xPos, startPosition.y - yPos, 0), transformMatrix); 
+            }
+        }
+    }
 
     /// <summary>
     /// Disable collision tile map renderer
