@@ -24,6 +24,12 @@ public class GameResources : MonoBehaviour
     #endregion
     public RoomNodeTypeListSO roomNodeTypeList;
 
+    #region Header PLAYER
+    [Space(10)]
+    [Header("PLAYER")]
+    #endregion
+    public CurrentPlayerSO currentPlayer;
+
     #region MATERIALS
     [Space(10)]
     [Header("MATERIALS")]
