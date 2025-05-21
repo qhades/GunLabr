@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    private void Initialze(PlayerDetailsSO playerDetails)
+    public void Initialize(PlayerDetailsSO playerDetails)
     {
         this.playerDetails = playerDetails;
 
