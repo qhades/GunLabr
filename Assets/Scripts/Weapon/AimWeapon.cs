@@ -20,6 +20,11 @@ public class AimWeapon : MonoBehaviour
         aimWeaponEvent.OnWeaponAim += AimWeaponEvent_OnWeaponAim;
     }
 
+    private void OnDisable()
+    {
+        aimWeaponEvent.OnWeaponAim -= AimWeaponEvent_OnWeaponAim;
+    }
+
     private void AimWeaponEvent_OnWeaponAim(AimWeaponEvent aimWeaponEvent, AimWeaponEventArgs aimWeaponEventArgs)
     {
         Aim(aimWeaponEventArgs.aimDirection, aimWeaponEventArgs.aimAngle);
@@ -42,7 +47,6 @@ public class AimWeapon : MonoBehaviour
             case AimDirection.Right:
                 weaponRotationPointTransform.localScale = new Vector3(1f, 1f, 0f);
                     break;
-
         }
     }
 

@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-
 #region REQUIRE COMPONENTS
 [RequireComponent(typeof(PlayerControl))]
+[RequireComponent(typeof(MovementByVelocityEvent))]
+[RequireComponent(typeof(MovementByVelocity))]
 [RequireComponent(typeof(AnimatePlayer))]
 [RequireComponent(typeof(IdleEvent))]
 [RequireComponent(typeof(Idle))]
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour
 {
     [HideInInspector] public PlayerDetailsSO playerDetails;
     [HideInInspector] public Health health;
+    [HideInInspector] public MovementByVelocityEvent movementByVelocityEvent;
     [HideInInspector] public IdleEvent idleEvent;
     [HideInInspector] public AimWeaponEvent aimWeaponEvent;
     [HideInInspector] public SpriteRenderer spriteRenderer;
@@ -35,6 +37,7 @@ public class Player : MonoBehaviour
         // Load components
         health = GetComponent<Health>();
         idleEvent = GetComponent<IdleEvent>();
+        movementByVelocityEvent = GetComponent<MovementByVelocityEvent>();
         aimWeaponEvent = GetComponent<AimWeaponEvent>();
 
         spriteRenderer = GetComponent<SpriteRenderer>();

@@ -19,6 +19,11 @@ public class Idle : MonoBehaviour
 
     private void OnEnable()
     {
+        idleEvent.OnIdle += IdleEvent_OnIdle;
+    }
+
+    private void OnDisable()
+    {
         idleEvent.OnIdle -= IdleEvent_OnIdle;
     }
 

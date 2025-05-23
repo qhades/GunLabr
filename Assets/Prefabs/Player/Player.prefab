@@ -252,6 +252,8 @@ GameObject:
   - component: {fileID: 7613772488456698051}
   - component: {fileID: 4362789838445449877}
   - component: {fileID: 1429951752266353490}
+  - component: {fileID: 3441969863813793328}
+  - component: {fileID: 6124544763553383561}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -467,6 +469,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDetails: {fileID: 0}
   health: {fileID: 0}
+  movementByVelocityEvent: {fileID: 0}
   idleEvent: {fileID: 0}
   aimWeaponEvent: {fileID: 0}
   spriteRenderer: {fileID: 0}
@@ -483,6 +486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 519b4a744a3dca24381323088c28a0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementDetails: {fileID: 11400000, guid: e3cd7365b6514874b805b40a4c318f6f, type: 2}
   weaponShootPosition: {fileID: 640021561706333051}
 --- !u!114 &1286775272828210550
 MonoBehaviour:
@@ -545,6 +549,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponRotationPointTransform: {fileID: 8104749179309276934}
+--- !u!114 &3441969863813793328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8104749179792931593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b85791362e8fc0438b8d6271ed5faed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6124544763553383561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8104749179792931593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 458a676f87685c94db4c3a4bdb1809f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8104749180020969965
 GameObject:
   m_ObjectHideFlags: 0

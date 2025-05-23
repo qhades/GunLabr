@@ -47,7 +47,7 @@ public static class HelperUltilities
         {
             aimDirection = AimDirection.UpLeft;
         }
-        else if((angleDegrees > 158f && angleDegrees <= 150f) || (angleDegrees > -100f && angleDegrees <= -135f))
+        else if((angleDegrees <= 180f && angleDegrees > 158f) || (angleDegrees > -180 && angleDegrees <= -135f))
         {
             aimDirection = AimDirection.Left;
         }
@@ -154,6 +154,46 @@ public static class HelperUltilities
                 error = true;
             }
         }
+
+        return error;
+    }
+
+    public static bool ValidateCheckPositiveValue(Object thisObject, string fieldName, float valueToCheck, bool isZeroAllowed)
+    {
+        bool error = false;
+
+        if (isZeroAllowed)
+        {
+            if (valueToCheck < 0)
+            {
+                Debug.Log(fieldName + " must contain a positive value or zero in object" + thisObject.name.ToString());
+                error = true;
+            }
+        }
+        else
+        {
+            if (valueToCheck <= 0)
+            {
+                Debug.Log(fieldName + " must contain a positive value in object" + thisObject.name.ToString());
+                error = true;
+            }
+        }
+
+        return error;
+    }
+
+    public static bool ValidateCheckPositiveRange (Object thisObject, string fieldNameMinimum, float valueToCheckMinimum, string fieldNameMaximum, float valueToCheckMaximum, bool isZeroAllowed)
+    {
+        bool error = false;
+        if (valueToCheckMinimum > valueToCheckMaximum)
+        {
+            Debug.Log(fieldNameMinimum + " must be less than or equal to " + fieldNameMaximum + " in object " + thisObject.name.ToString());
+            error = true;
+        }
+
+        if (ValidateCheckPositiveValue(thisObject, fieldNameMinimum, valueToCheckMinimum, isZeroAllowed)) error = true;
+
+        if (ValidateCheckPositiveValue(thisObject, fieldNameMaximum, valueToCheckMaximum, isZeroAllowed)) error = true;
 
         return error;
     }
