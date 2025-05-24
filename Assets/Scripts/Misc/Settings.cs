@@ -16,6 +16,7 @@ public static class Settings
 
     #region ROOM SETTINGS
 
+    public const float fadeInTime = 0.5f;
     public const int maxChildCorridors = 3;
 
     #endregion
@@ -33,5 +34,12 @@ public static class Settings
     public static int rollDown = Animator.StringToHash("rollDown");
     public static int rollLeft = Animator.StringToHash("rollLeft");
     public static int rollRight = Animator.StringToHash("rollRight");
+
+    public static int open = Animator.StringToHash("open");
+    #endregion
+
+    #region GAMEOBJECT TAGS
+    public const string playerTag = "Player";
+    public const string playerWeapon = "playerWeapon";
     #endregion
 }

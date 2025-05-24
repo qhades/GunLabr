@@ -27,11 +27,23 @@ public class InstantiatedRoom : MonoBehaviour
         roomColliderBounds = boxCollider2D.bounds;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        if(collision.tag == Settings.playerTag && room != GameManager.Instance.GetCurrentRoom())
+        {
+            this.room.isPreviouslyVisited = true;
+
+            StaticEventHandler.CallRoomChangedEvent(room);
+        }
+    }
+
     /// <summary>
     /// Initialize the instantated Room
     /// </summary>
     public void Initialize(GameObject roomGameobject)
     {
+
         PopulateTilemapMemberVariable(gameObject);
 
         BlockOffUnusedDoorWays();
@@ -219,6 +231,15 @@ public class InstantiatedRoom : MonoBehaviour
                 {
                     door = Instantiate(doorway.doorPrefab, gameObject.transform);
                     door.transform.localPosition = new Vector3(doorway.position.x, doorway.position.y + tileDistance * 1.25f, 0f) ;
+                }
+
+                Door doorComponent = door.GetComponent<Door>();
+
+                if (room.roomNodeType.isBossRoom)
+                {
+                    doorComponent.isBossRoomDoor = true;
+
+                    doorComponent.LockDoor();
                 }
             }
         }
