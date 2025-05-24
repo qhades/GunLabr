@@ -4,6 +4,11 @@ using UnityEngine;
 
 public static class Settings
 {
+    #region UNITS
+    public const float pixelsPerUnit = 16f;
+    public const float tileSizePixel = 16f;
+    #endregion
+
     #region DUNGEON BUILD SETTINGs
     public const int maxDungeonRebuildAttemptsForRoomGraph = 1000;
     public const int maxDungeonBuildAttempts = 10;
@@ -24,5 +29,9 @@ public static class Settings
     public static int aimUpLeft = Animator.StringToHash("aimUpLeft");
     public static int isIdle = Animator.StringToHash("isIdle");
     public static int isMoving = Animator.StringToHash("isMoving");
+    public static int rollUp = Animator.StringToHash("rollUp");
+    public static int rollDown = Animator.StringToHash("rollDown");
+    public static int rollLeft = Animator.StringToHash("rollLeft");
+    public static int rollRight = Animator.StringToHash("rollRight");
     #endregion
 }

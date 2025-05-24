@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minMoveSpeed: 8
   maxMoveSpeed: 8
+  rollSpeed: 9
+  rollDistance: 8
+  rollCoolDownTime: 0.2

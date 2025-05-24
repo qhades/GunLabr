@@ -7,12 +7,12 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class MovementByVelocity : MonoBehaviour
 {
-    private Rigidbody2D rigidbody2D;
+    private Rigidbody2D rigidBody2D;
     private MovementByVelocityEvent movementByVelocityEvent;
 
     private void Awake()
     {
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        rigidBody2D = GetComponent<Rigidbody2D>();
         movementByVelocityEvent = GetComponent<MovementByVelocityEvent>();
     }
 
@@ -33,6 +33,6 @@ public class MovementByVelocity : MonoBehaviour
 
     private void MoveRigidBody(Vector2 moveDirection, float moveSpeed)
     {
-        rigidbody2D.velocity = moveDirection * moveSpeed;
+        rigidBody2D.velocity = moveDirection * moveSpeed;
     }
 }
