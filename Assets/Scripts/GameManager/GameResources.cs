@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class GameResources : MonoBehaviour
 {
@@ -39,6 +40,13 @@ public class GameResources : MonoBehaviour
     public Material litMaterial;
     public Shader variableLitShader;
 
+    #region Header SPECIAL TILEMAP TILES
+    [Space(10)]
+    [Header("SPECIAL TILEMAP TILES")]
+    #endregion
+    public TileBase[] enemyUnwalkableCollisionTilesArray;
+    public TileBase preferredEnemyPathTile;
+
     #region Validation
 #if UNITY_EDITOR
     private void OnValidate()
@@ -48,6 +56,8 @@ public class GameResources : MonoBehaviour
         HelperUltilities.ValidateCheckNullValue(this, nameof(litMaterial), litMaterial);
         HelperUltilities.ValidateCheckNullValue(this, nameof(dimmedMaterial), dimmedMaterial);
         HelperUltilities.ValidateCheckNullValue(this, nameof(variableLitShader), variableLitShader);
+        HelperUltilities.ValidateCheckNullValue(this, nameof(preferredEnemyPathTile), preferredEnemyPathTile);
+        HelperUltilities.ValidateCheckEnumarableValues(this, nameof(enemyUnwalkableCollisionTilesArray), enemyUnwalkableCollisionTilesArray);
     }
 #endif
     #endregion
