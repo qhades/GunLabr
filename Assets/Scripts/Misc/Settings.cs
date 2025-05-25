@@ -35,6 +35,8 @@ public static class Settings
     public static int rollLeft = Animator.StringToHash("rollLeft");
     public static int rollRight = Animator.StringToHash("rollRight");
 
+    public static float baseSpeeForPlayerAnimation = 8f;
+
     public static int open = Animator.StringToHash("open");
     #endregion
 
