@@ -83,6 +83,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 794268795773456122, guid: 7047ef0561dc9764fbf56855c8a9aea8, type: 3}
+      propertyPath: enemyDetails
+      value: 
+      objectReference: {fileID: 11400000, guid: 874ccb70dcd782644b8e8e41111ce4e3, type: 2}
+    - target: {fileID: 1820302476210539480, guid: 7047ef0561dc9764fbf56855c8a9aea8, type: 3}
+      propertyPath: movementDetails
+      value: 
+      objectReference: {fileID: 11400000, guid: 02176dc77ec04054dbc44aaab4335f3b, type: 2}
     - target: {fileID: 2424164094901509408, guid: 7047ef0561dc9764fbf56855c8a9aea8, type: 3}
       propertyPath: m_Size.x
       value: 0.25

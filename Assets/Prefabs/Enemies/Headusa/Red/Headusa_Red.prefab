@@ -55,6 +55,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 794268795773456122, guid: 7047ef0561dc9764fbf56855c8a9aea8, type: 3}
+      propertyPath: enemyDetails
+      value: 
+      objectReference: {fileID: 11400000, guid: 42fc6eceb312e214389c10b07873f624, type: 2}
+    - target: {fileID: 1820302476210539480, guid: 7047ef0561dc9764fbf56855c8a9aea8, type: 3}
+      propertyPath: movementDetails
+      value: 
+      objectReference: {fileID: 11400000, guid: 62549bda01ddbca4c88254a1428a50c7, type: 2}
     - target: {fileID: 3926032481248867129, guid: 7047ef0561dc9764fbf56855c8a9aea8, type: 3}
       propertyPath: m_Name
       value: Headusa_Red

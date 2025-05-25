@@ -55,6 +55,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 794268795773456122, guid: 7047ef0561dc9764fbf56855c8a9aea8, type: 3}
+      propertyPath: enemyDetails
+      value: 
+      objectReference: {fileID: 11400000, guid: 99f175ce40aea1d4fade7d09d144f228, type: 2}
+    - target: {fileID: 1820302476210539480, guid: 7047ef0561dc9764fbf56855c8a9aea8, type: 3}
+      propertyPath: movementDetails
+      value: 
+      objectReference: {fileID: 11400000, guid: 93b1fa3c0ae866a4bbbc2e7b600baaba, type: 2}
     - target: {fileID: 3926032481248867129, guid: 7047ef0561dc9764fbf56855c8a9aea8, type: 3}
       propertyPath: m_Name
       value: SkullFace_White

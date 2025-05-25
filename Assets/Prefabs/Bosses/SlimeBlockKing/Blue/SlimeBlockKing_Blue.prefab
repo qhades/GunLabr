@@ -55,6 +55,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 794268795773456122, guid: 7047ef0561dc9764fbf56855c8a9aea8, type: 3}
+      propertyPath: enemyDetails
+      value: 
+      objectReference: {fileID: 11400000, guid: 3cf1a48deea4bf9499c429895a7f5f28, type: 2}
+    - target: {fileID: 1820302476210539480, guid: 7047ef0561dc9764fbf56855c8a9aea8, type: 3}
+      propertyPath: movementDetails
+      value: 
+      objectReference: {fileID: 11400000, guid: f70107edace1efa439283c701163549a, type: 2}
     - target: {fileID: 3926032481248867129, guid: 7047ef0561dc9764fbf56855c8a9aea8, type: 3}
       propertyPath: m_Name
       value: SlimeBlockKing_Blue
