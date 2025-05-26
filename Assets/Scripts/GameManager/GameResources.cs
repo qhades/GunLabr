@@ -40,6 +40,12 @@ public class GameResources : MonoBehaviour
     public Material litMaterial;
     public Shader variableLitShader;
 
+    #region Header UI
+    [Space(10)]
+    [Header("UI")]
+    #endregion
+    public GameObject ammoIconPrefab;
+
     #region Header SPECIAL TILEMAP TILES
     [Space(10)]
     [Header("SPECIAL TILEMAP TILES")]
@@ -56,6 +62,7 @@ public class GameResources : MonoBehaviour
         HelperUltilities.ValidateCheckNullValue(this, nameof(litMaterial), litMaterial);
         HelperUltilities.ValidateCheckNullValue(this, nameof(dimmedMaterial), dimmedMaterial);
         HelperUltilities.ValidateCheckNullValue(this, nameof(variableLitShader), variableLitShader);
+        HelperUltilities.ValidateCheckNullValue(this, nameof(ammoIconPrefab), ammoIconPrefab);
         HelperUltilities.ValidateCheckNullValue(this, nameof(preferredEnemyPathTile), preferredEnemyPathTile);
         HelperUltilities.ValidateCheckEnumarableValues(this, nameof(enemyUnwalkableCollisionTilesArray), enemyUnwalkableCollisionTilesArray);
     }

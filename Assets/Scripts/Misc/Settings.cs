@@ -45,6 +45,14 @@ public static class Settings
     public const string playerWeapon = "playerWeapon";
     #endregion
 
+    #region FIRING CONTROL
+    public const float useAimAngleDisTance = 3.5f;
+    #endregion
+
+    #region UI PARAMETERS
+    public const float uiAmmoIconSpacing = 4f;
+    #endregion
+
     #region ASTAR PATHFINDING PARAMETERS
     public const int defaultAStarMovementPenalty = 40;
     public const float playerMoveDistanceToRebuildPath = 3f;

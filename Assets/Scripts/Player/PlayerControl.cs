@@ -1,12 +1,17 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+
+[RequireComponent(typeof(Player))]
+[DisallowMultipleComponent]
 
 public class PlayerControl : MonoBehaviour
 {
     [SerializeField] private MovementDetailsSO movementDetails;
-    [SerializeField] private Transform weaponShootPosition;
 
     private Player player;
+    private bool leftMouseDownPreviousFrame = false;
+    private int currentWeaponIndex = 1;
     private float moveSpeed;
     private Coroutine playerRollCoroutine;
     private WaitForFixedUpdate waitForFixedUpdate;
@@ -23,7 +28,24 @@ public class PlayerControl : MonoBehaviour
     {
         waitForFixedUpdate = new WaitForFixedUpdate();
 
+        SetStartingWeapon();
+
         SetPlayerAnimationSpeed();
+    }
+
+    private void SetStartingWeapon()
+    {
+        int index = 1;
+
+        foreach (Weapon weapon in player.weaponList)
+        {
+            if(weapon.weaponDetails == player.playerDetails.startingWeapon)
+            {
+                SetWeaponByIndex(index);
+                break;
+            }
+            index++;
+        }
     }
 
     private void SetPlayerAnimationSpeed()
@@ -36,7 +58,9 @@ public class PlayerControl : MonoBehaviour
         if (isPlayerRolling) return;
 
         MovementInput();
+
         WeaponInput();
+        
         PlayerRollCooldownTimer();
     }
 
@@ -108,17 +132,23 @@ public class PlayerControl : MonoBehaviour
     private void WeaponInput()
     {
         Vector3 weaponDirection;
-        float weaponAngleDgress, playerAngleDegrees;
+        float weaponAngleDegrees, playerAngleDegrees;
         AimDirection playerAimDirection;
 
-        AimWeaponInput(out weaponDirection, out weaponAngleDgress, out playerAngleDegrees, out playerAimDirection);
+        AimWeaponInput(out weaponDirection, out weaponAngleDegrees, out playerAngleDegrees, out playerAimDirection);
+
+        FireWeaponInput(weaponDirection, weaponAngleDegrees, playerAngleDegrees, playerAimDirection);
+
+        SwitchWeaponInput();
+
+        ReloadWeaponInput();
     }
 
     private void AimWeaponInput(out Vector3 weaponDirection, out float weaponAngleDegrees, out float playerAngleDegrees, out AimDirection playerAimDirection)
     {
         Vector3 mouseWorldPosition = HelperUltilities.GetMouseWorldPosition();
 
-        weaponDirection = (mouseWorldPosition - weaponShootPosition.position);
+        weaponDirection = (mouseWorldPosition - player.activeWeapon.GetShootPosition());
 
         Vector3 playerDirection = (mouseWorldPosition - transform.position);
 
@@ -129,6 +159,108 @@ public class PlayerControl : MonoBehaviour
         playerAimDirection = HelperUltilities.GetAimDirection(playerAngleDegrees);
 
         player.aimWeaponEvent.CallAimWeaponEvent(playerAimDirection, playerAngleDegrees, weaponAngleDegrees, weaponDirection);
+    }
+
+    private void FireWeaponInput(Vector3 weaponDirection, float weaponAngleDegrees, float playerAngleDegrees, AimDirection playerAimDirection)
+    {
+        if (Input.GetMouseButton(0))
+        {
+            player.fireWeaponEvent.CallFireWeaponEvent(true, leftMouseDownPreviousFrame, playerAimDirection, playerAngleDegrees, weaponAngleDegrees, weaponDirection);
+
+            leftMouseDownPreviousFrame = true;
+        }
+        else
+        {
+            leftMouseDownPreviousFrame = false;
+        }
+    }
+
+    private void SwitchWeaponInput()
+    {
+        if (Input.mouseScrollDelta.y < 0f)
+        {
+            PreviousWeapon();
+        }
+
+        if (Input.mouseScrollDelta.y > 0f)
+        {
+            NextWeapon();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            SetWeaponByIndex(1);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SetWeaponByIndex(2);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            SetWeaponByIndex(3);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            SetWeaponByIndex(4);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            SetWeaponByIndex(5);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Minus))
+        {
+            SetCurrentWeaponToFirstInTheList();
+        }
+    }
+
+    private void SetWeaponByIndex(int weaponIndex)
+    {
+        if ( weaponIndex - 1 < player.weaponList.Count)
+        {
+            currentWeaponIndex = weaponIndex;
+            player.setActiveWeaponEvent.CallSetActiveWeaponEvent(player.weaponList[weaponIndex - 1]);
+        }
+    }
+
+    private void NextWeapon()
+    {
+        currentWeaponIndex++;
+
+        if (currentWeaponIndex > player.weaponList.Count)
+        {
+            currentWeaponIndex = 1;
+        }
+
+        SetWeaponByIndex(currentWeaponIndex);
+    }
+
+    private void PreviousWeapon()
+    {
+        currentWeaponIndex--;
+
+        if (currentWeaponIndex < 1)
+        {
+            currentWeaponIndex = player.weaponList.Count;
+        }
+
+        SetWeaponByIndex(currentWeaponIndex);
+    }
+
+    private void ReloadWeaponInput()
+    {
+        Weapon currentWeapon = player.activeWeapon.GetCurrentWeapon();
+
+        if (currentWeapon.isWeaponReloading) return;
+
+        if (currentWeapon.weaponRemainingAmmo < currentWeapon.weaponDetails.weaponClipAmmoCapacity && !currentWeapon.weaponDetails.hasInfiniteAmmo) return;
+
+        if (currentWeapon.weaponClipRemainingAmmo == currentWeapon.weaponDetails.weaponClipAmmoCapacity) return;
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            player.reloadWeaponEvent.CallReloadWeaponEvent(player.activeWeapon.GetCurrentWeapon(), 0);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -149,6 +281,32 @@ public class PlayerControl : MonoBehaviour
 
             isPlayerRolling = false;
         }
+    }
+
+    private void SetCurrentWeaponToFirstInTheList()
+    {
+        List<Weapon> tempWeaponList = new List<Weapon>();
+
+        Weapon currentWeapon = player.weaponList[currentWeaponIndex - 1];
+        currentWeapon.weaponListPosition = 1;
+        tempWeaponList.Add(currentWeapon);
+
+        int index = 2;
+
+        foreach (Weapon weapon in player.weaponList)
+        {
+            if (weapon == currentWeapon) continue;
+
+            tempWeaponList.Add(weapon);
+            weapon.weaponListPosition = index;
+            index++;
+        }
+
+        player.weaponList = tempWeaponList;
+
+        currentWeaponIndex = 1;
+
+        SetWeaponByIndex(currentWeaponIndex);
     }
 
     #region Validation

@@ -40,6 +40,21 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         player.Initialize(playerDetails);
     }
 
+    private void OnEnable()
+    {
+        StaticEventHandler.OnRoomChanged += StaticEventHandler_OnRoomChanged;
+    }
+
+    private void OnDisable()
+    {
+        StaticEventHandler.OnRoomChanged -= StaticEventHandler_OnRoomChanged;
+    }
+
+    private void StaticEventHandler_OnRoomChanged(RoomChangedEventArgs roomChangedEventArgs)
+    {
+        SetCurrentRoom(roomChangedEventArgs.room);
+    }
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -52,10 +67,10 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         HandleGameState();
 
         // Testing
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            gameState = GameState.gameStarted;
-        }
+        //if (Input.GetKeyDown(KeyCode.P))
+        //{
+        //    gameState = GameState.gameStarted;
+        //}
     }
 
     /// <summary>
