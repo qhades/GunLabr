@@ -45,7 +45,7 @@ public class InstantiatedRoom : MonoBehaviour
     public void Initialize(GameObject roomGameobject)
     {
 
-        PopulateTilemapMemberVariable(gameObject);
+        PopulateTilemapMemberVariable(roomGameobject);
 
         BlockOffUnusedDoorWays();
 
@@ -278,5 +278,22 @@ public class InstantiatedRoom : MonoBehaviour
     private void DisableCollisionTilemapRenderer()
     {
         collisionTilemap.gameObject.GetComponent<TilemapRenderer>().enabled = false;
+    }
+
+    public void DisableRoomCollider()
+    {
+        boxCollider2D.enabled = false;
+    }
+
+    public void LockDoor()
+    {
+        Door[] doorArray = GetComponentsInChildren<Door>();
+
+        foreach(Door door in doorArray)
+        {
+            door.LockDoor();
+        }
+
+        DisableRoomCollider();
     }
 }

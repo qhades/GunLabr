@@ -8,17 +8,9 @@ public class RoomTemplateSO : ScriptableObject
     [HideInInspector] public string guid;
 
     #region Header ROOM PREFAB
-
     [Space(10)]
     [Header("ROOM PREFAB")]
-
     #endregion Header ROOM PREFAB
-
-    #region Tooltip
-
-    [Tooltip("The gameobject prefab for the room (this will contain all the tilemaps for the room and environment game objects")]
-
-    #endregion Tooltip
 
     public GameObject prefab;
 
@@ -26,51 +18,26 @@ public class RoomTemplateSO : ScriptableObject
 
 
     #region Header ROOM CONFIGURATION
-
     [Space(10)]
     [Header("ROOM CONFIGURATION")]
-
     #endregion Header ROOM CONFIGURATION
 
-    #region Tooltip
-
-    [Tooltip("The room node type SO. The room node types correspond to the room nodes used in the room node graph.  The exceptions being with corridors.  In the room node graph there is just one corridor type 'Corridor'.  For the room templates there are 2 corridor node types - CorridorNS and CorridorEW.")]
-
-    #endregion Tooltip
-
-    public RoomNodeTypeSO roomNodeType;
-
-    #region Tooltip
-
-    [Tooltip("If you imagine a rectangle around the room tilemap that just completely encloses it, the room lower bounds represent the bottom left corner of that rectangle. This should be determined from the tilemap for the room (using the coordinate brush pointer to get the tilemap grid position for that bottom left corner (Note: this is the local tilemap position and NOT world position")]
-
-    #endregion Tooltip
+    public RoomNodeTypeSO roomNodeType;  
 
     public Vector2Int lowerBounds;
-
-    #region Tooltip
-
-    [Tooltip("If you imagine a rectangle around the room tilemap that just completely encloses it, the room upper bounds represent the top right corner of that rectangle. This should be determined from the tilemap for the room (using the coordinate brush pointer to get the tilemap grid position for that top right corner (Note: this is the local tilemap position and NOT world position")]
-
-    #endregion Tooltip
-
+    
     public Vector2Int upperBounds;
-
-    #region Tooltip
-
-    [Tooltip("There should be a maximum of four doorways for a room - one for each compass direction.  These should have a consistent 3 tile opening size, with the middle tile position being the doorway coordinate 'position'")]
-
-    #endregion Tooltip
 
     [SerializeField] public List<Doorway> doorwayList;
 
-    #region Tooltip
-
-    [Tooltip("Each possible spawn position (used for enemies and chests) for the room in tilemap coordinates should be added to this array")]
-
-    #endregion Tooltip
-
     public Vector2Int[] spawnPositionArray;
+
+    #region Header ENEMY DETAILS
+    [Space(10)]
+    [Header("ENEMY DETAILS")]
+    #endregion
+    public List<SpawnableObjectByLevel<EnemyDetailsSO>> enemiesByLevelList;
+    public List<RoomEnemySpawnParameters> roomEnemySpawnParametersList;
 
     /// <summary>
     /// Returns the list of Entrances for the room template
@@ -95,7 +62,48 @@ public class RoomTemplateSO : ScriptableObject
             EditorUtility.SetDirty(this);
         }
 
+        HelperUltilities.ValidateCheckNullValue(this, nameof(prefab), prefab);
+        HelperUltilities.ValidateCheckNullValue(this, nameof(roomNodeType), roomNodeType);
+
         HelperUltilities.ValidateCheckEnumarableValues(this, nameof(doorwayList), doorwayList);
+
+        if (enemiesByLevelList.Count > 0 || roomEnemySpawnParametersList.Count > 0)
+        {
+            HelperUltilities.ValidateCheckEnumarableValues(this, nameof(enemiesByLevelList), enemiesByLevelList);
+            HelperUltilities.ValidateCheckEnumarableValues(this, nameof(roomEnemySpawnParametersList), roomEnemySpawnParametersList);
+
+            foreach(RoomEnemySpawnParameters roomEnemySpawnParameters in roomEnemySpawnParametersList)
+            {
+                HelperUltilities.ValidateCheckNullValue(this, nameof(roomEnemySpawnParameters.dungeonLevel), roomEnemySpawnParameters.dungeonLevel);
+                HelperUltilities.ValidateCheckPositiveRange(this, nameof(roomEnemySpawnParameters.minTotalEnemiesToSpawn), roomEnemySpawnParameters.minTotalEnemiesToSpawn, nameof(roomEnemySpawnParameters.maxTotalEnemiesToSpawn), roomEnemySpawnParameters.maxTotalEnemiesToSpawn, true);
+                HelperUltilities.ValidateCheckPositiveRange(this, nameof(roomEnemySpawnParameters.minConcurrentEnemies), roomEnemySpawnParameters.minConcurrentEnemies, nameof(roomEnemySpawnParameters.maxConcurrentEnemies), roomEnemySpawnParameters.maxConcurrentEnemies, false);
+                HelperUltilities.ValidateCheckPositiveRange(this, nameof(roomEnemySpawnParameters.minSpawnInterval), roomEnemySpawnParameters.minSpawnInterval, nameof(roomEnemySpawnParameters.maxSpawnInterval), roomEnemySpawnParameters.maxSpawnInterval, true);
+
+                bool isEnemyTypesListForDungeonLevel = false;
+
+                foreach(SpawnableObjectByLevel<EnemyDetailsSO> dungeonObjectBylevel in enemiesByLevelList)
+                {
+                    if (dungeonObjectBylevel.dungeonLevel == roomEnemySpawnParameters.dungeonLevel && dungeonObjectBylevel.spawnableObjectRatioList.Count > 0)
+                    {
+                        isEnemyTypesListForDungeonLevel = true;
+
+                        HelperUltilities.ValidateCheckNullValue(this, nameof(dungeonObjectBylevel.dungeonLevel), dungeonObjectBylevel.dungeonLevel);
+
+                        foreach(SpawnableObjectRatio<EnemyDetailsSO> dungeonObjectRatio in dungeonObjectBylevel.spawnableObjectRatioList)
+                        {
+                            HelperUltilities.ValidateCheckNullValue(this, nameof(dungeonObjectRatio.dungeonObject), dungeonObjectRatio.dungeonObject);
+                            HelperUltilities.ValidateCheckPositiveValue(this, nameof(dungeonObjectRatio.ratio), dungeonObjectRatio.ratio, false);
+                        }
+                    }
+                }
+
+                if (isEnemyTypesListForDungeonLevel == false && roomEnemySpawnParameters.dungeonLevel != null)
+                {
+                    Debug.Log("No enemy types specified in for dungeon level" + roomEnemySpawnParameters.dungeonLevel.levelName + " in gameobject " + this.name.ToString());
+                }
+
+            }
+        }
 
         // Check spawn positions populated
         HelperUltilities.ValidateCheckEnumarableValues(this, nameof(spawnPositionArray), spawnPositionArray);

@@ -127,7 +127,7 @@ public class WeaponStatusUI : MonoBehaviour
     {
         if (weapon.weaponDetails.hasInfiniteAmmo)
         {
-            ammoRemainingText.text = "IFINITE AMMO";
+            ammoRemainingText.text = "INFINITE AMMO";
         }
         else
         {
