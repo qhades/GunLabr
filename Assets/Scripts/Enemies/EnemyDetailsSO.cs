@@ -13,13 +13,40 @@ public class EnemyDetailsSO : ScriptableObject
 
     public float chaseDistance = 50f;
 
+    #region Header ENEMY WEAPON SETTING
+    [Space(10)]
+    [Header("ENEMY WEAPON SETTING")]
+    #endregion
+    public WeaponDetailsSO enemyWeapon;
+    public float firingIntervalMin = 0.1f;
+    public float firingIntervalMax = 1f;
+    public float firingDurationMin = 1f;
+    public float firingDurationMax = 2f;
+    public bool firingLineOfSignRequired;
+
+    #region Header ENEMY HEALTH
+    [Space(10)]
+    [Header("ENEMY HEALTH")]
+    #endregion
+    public EnemyHealthDetails[] enemyHealthDetailsArray;
+    public bool isImmuneAfterHit = false;
+    public float hitImmunityTime;
+
     #region Validation
 #if UNITY_EDITOR
     private void OnValidate()
-    {
-        HelperUltilities.ValidateCheckNullValue(this, nameof(enemyPrefab), enemyPrefab);
+    {        
         HelperUltilities.ValidateCheckEmptyString(this, nameof(enemyName), enemyName);
+        HelperUltilities.ValidateCheckNullValue(this, nameof(enemyPrefab), enemyPrefab);
         HelperUltilities.ValidateCheckPositiveValue(this, nameof(chaseDistance), chaseDistance, false);
+
+        HelperUltilities.ValidateCheckPositiveRange(this, nameof(firingDurationMin), firingDurationMin, nameof(firingDurationMax), firingDurationMax, false);
+        HelperUltilities.ValidateCheckPositiveRange(this, nameof(firingIntervalMin), firingIntervalMin, nameof(firingIntervalMax), firingIntervalMax, false);
+
+        if (isImmuneAfterHit)
+        {
+            HelperUltilities.ValidateCheckPositiveValue(this, nameof(hitImmunityTime), hitImmunityTime, false);
+        }
     }
 #endif
     #endregion

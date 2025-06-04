@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c71c18f08c1a2bb4eabe693556237041, type: 3}
+  m_Name: WeaponDetails_Revolver_Boss
+  m_EditorClassIdentifier: 
+  weaponName: Revolver Boss
+  weaponSprite: {fileID: 21300000, guid: 29bc0107bc11191468ed7d175994fb5b, type: 3}
+  weaponShootPosition: {x: 1.91, y: 0.49, z: 0}
+  weaponCurrentAmmo: {fileID: 11400000, guid: c6ba978db4494794ab040a5c56f2e898, type: 2}
+  hasInfiniteAmmo: 1
+  hasInfiniteClipCapacity: 1
+  weaponClipAmmoCapacity: 0
+  weaponAmmoCapacity: 0
+  weaponFireRate: 0.15
+  weaponReloadTime: 0
+  weaponPrechargeTime: 0

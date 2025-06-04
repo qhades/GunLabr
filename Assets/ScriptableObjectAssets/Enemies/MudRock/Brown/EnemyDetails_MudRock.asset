@@ -14,3 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: MudRock Brown
   enemyPrefab: {fileID: 7440101108089267288, guid: a794f2dd8618c304bbf1c65b071adb2f, type: 3}
+  chaseDistance: 50
+  enemyWeapon: {fileID: 11400000, guid: 44b0ffb3b34ef9a43b23c9df084041bd, type: 2}
+  firingIntervalMin: 0.8
+  firingIntervalMax: 1.3
+  firingDurationMin: 6
+  firingDurationMax: 8
+  firingLineOfSignRequired: 1
+  enemyHealthDetailsArray:
+  - dungeonLevel: {fileID: 11400000, guid: 01c005cfd238c5546a529f119c710b97, type: 2}
+    enemyHealthAmount: 12
+  isImmuneAfterHit: 0
+  hitImmunityTime: 0

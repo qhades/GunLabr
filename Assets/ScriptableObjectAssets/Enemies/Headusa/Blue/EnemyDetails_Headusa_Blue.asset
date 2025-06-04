@@ -14,3 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Headusa Blue
   enemyPrefab: {fileID: 3501577158498799471, guid: 68fcfc1010b071048b21be37887b20bb, type: 3}
+  chaseDistance: 50
+  enemyWeapon: {fileID: 0}
+  firingIntervalMin: 0.1
+  firingIntervalMax: 1
+  firingDurationMin: 1
+  firingDurationMax: 2
+  firingLineOfSignRequired: 0
+  enemyHealthDetailsArray:
+  - dungeonLevel: {fileID: 11400000, guid: 01c005cfd238c5546a529f119c710b97, type: 2}
+    enemyHealthAmount: 20
+  isImmuneAfterHit: 0
+  hitImmunityTime: 0

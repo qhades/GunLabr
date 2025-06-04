@@ -103,8 +103,43 @@ public class EnemySpawner : SingletonMonobehaviour<EnemySpawner>
 
         DungeonLevelSO dungeonLevel = GameManager.Instance.GetCurrentDungeonLevel();
 
-        GameObject enemy = Instantiate(enemyDetails.enemyPrefab, position, Quaternion.identity, transform);
+        //if (enemyDetails == null)
+        //{
+        //    Debug.Log("Null");
+        //    return;
+        //}
 
+        GameObject enemy = Instantiate(enemyDetails.enemyPrefab, position, Quaternion.identity, transform);
+        
         enemy.GetComponent<Enemy>().EnemyInitialization(enemyDetails, enemiesSpawnSoFar, dungeonLevel);
+
+        enemy.GetComponent<DestroyedEvent>().OnDestroyed += Enemy_OnDestroyed;
+    }
+
+    private void Enemy_OnDestroyed(DestroyedEvent destroyedEvent, DestroyedEventArgs destroyedEventArgs)
+    {
+        destroyedEvent.OnDestroyed -= Enemy_OnDestroyed;
+
+        currentEnemyCount--;
+
+        if (currentEnemyCount <= 0 && enemiesSpawnSoFar == enemiesToSpawn)
+        {
+            currentRoom.isClearedOfEnemies = true;
+
+            if (GameManager.Instance.gameState == GameState.engagingEnemies)
+            {
+                GameManager.Instance.gameState = GameState.playingLevel;
+                GameManager.Instance.previousGameState = GameState.engagingEnemies;
+            }
+            else if (GameManager.Instance.gameState == GameState.engagingBoss)
+            {
+                GameManager.Instance.gameState = GameState.bossStage;
+                GameManager.Instance.previousGameState = GameState.engagingBoss;
+            }
+
+            currentRoom.instantiatedRoom.UnLockDoor(Settings.doorUnlockDelay);
+
+            StaticEventHandler.CallRoomEnemiesDefeatedEvent(currentRoom);
+        }
     }
 }

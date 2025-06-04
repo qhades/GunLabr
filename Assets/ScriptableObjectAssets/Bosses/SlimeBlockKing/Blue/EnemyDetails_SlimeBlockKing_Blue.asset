@@ -14,3 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Slime Block King Blue
   enemyPrefab: {fileID: 1542453429145577197, guid: 2d61d998ecf41e249b78a50ff1ed5460, type: 3}
+  chaseDistance: 50
+  enemyWeapon: {fileID: 11400000, guid: b1cbdceb72926d349bd200108284f306, type: 2}
+  firingIntervalMin: 1
+  firingIntervalMax: 3
+  firingDurationMin: 8
+  firingDurationMax: 10
+  firingLineOfSignRequired: 0
+  enemyHealthDetailsArray:
+  - dungeonLevel: {fileID: 11400000, guid: 01c005cfd238c5546a529f119c710b97, type: 2}
+    enemyHealthAmount: 300
+  isImmuneAfterHit: 0
+  hitImmunityTime: 0

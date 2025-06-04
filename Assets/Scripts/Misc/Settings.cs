@@ -19,6 +19,8 @@ public static class Settings
     public const float fadeInTime = 0.5f;
     public const int maxChildCorridors = 3;
 
+    public const float doorUnlockDelay = 3f;
+
     #endregion
 
     #region ANIMATOR PARAMETERS
@@ -51,7 +53,12 @@ public static class Settings
     public const float useAimAngleDisTance = 3.5f;
     #endregion
 
+    #region ENEMY PARAMETERS
+    public const int defaultEnemyHealth = 20;
+    #endregion
+
     #region UI PARAMETERS
+    public const float uiHeartSpacing = 16f;
     public const float uiAmmoIconSpacing = 4f;
     #endregion
 

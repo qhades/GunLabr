@@ -49,6 +49,7 @@ MonoBehaviour:
   litMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   variableLitShader: {fileID: -6465566751694194690, guid: 089470c206a806f44aeee87cc1f9723d, type: 3}
   ammoIconPrefab: {fileID: 3579150918265541688, guid: 67526ee1edf19b54bad19a14c40cd332, type: 3}
+  heartPrefab: {fileID: 5939593959479638511, guid: 1734c13c80e2bf840abb16e83d1fe20a, type: 3}
   enemyUnwalkableCollisionTilesArray:
   - {fileID: 11400000, guid: 37e2c9e0227bfbc409cd632b9bd0c81f, type: 2}
   - {fileID: 11400000, guid: 98f177f8276c38b429705e6720c48672, type: 2}

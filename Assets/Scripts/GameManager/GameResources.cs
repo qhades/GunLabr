@@ -45,6 +45,7 @@ public class GameResources : MonoBehaviour
     [Header("UI")]
     #endregion
     public GameObject ammoIconPrefab;
+    public GameObject heartPrefab;
 
     #region Header SPECIAL TILEMAP TILES
     [Space(10)]
