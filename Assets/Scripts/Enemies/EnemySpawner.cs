@@ -103,12 +103,6 @@ public class EnemySpawner : SingletonMonobehaviour<EnemySpawner>
 
         DungeonLevelSO dungeonLevel = GameManager.Instance.GetCurrentDungeonLevel();
 
-        //if (enemyDetails == null)
-        //{
-        //    Debug.Log("Null");
-        //    return;
-        //}
-
         GameObject enemy = Instantiate(enemyDetails.enemyPrefab, position, Quaternion.identity, transform);
         
         enemy.GetComponent<Enemy>().EnemyInitialization(enemyDetails, enemiesSpawnSoFar, dungeonLevel);

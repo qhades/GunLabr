@@ -33,7 +33,7 @@ public class RandomSpawnableObject<T>
             {
                 foreach (SpawnableObjectRatio<T> spawnableObjectRatio in spawnableObjectByLevel.spawnableObjectRatioList)
                 {
-                    int lowerBoundary = upperBoundary = 1;
+                    int lowerBoundary = upperBoundary + 1;
 
                     upperBoundary = lowerBoundary + spawnableObjectRatio.ratio - 1;
 

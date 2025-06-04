@@ -30,7 +30,6 @@ public class InstantiatedRoom : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
         if(collision.tag == Settings.playerTag && room != GameManager.Instance.GetCurrentRoom())
         {
             this.room.isPreviouslyVisited = true;

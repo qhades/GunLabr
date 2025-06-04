@@ -33,9 +33,12 @@ public class Health : MonoBehaviour
 
         if (player != null)
         {
-            isImmuneAfterHit = true;
-            immunityTime = player.playerDetails.hitImmunityTime;
-            spriteRenderer = player.spriteRenderer;
+            if (player.playerDetails.isImmuneAfterHit)
+            {
+                isImmuneAfterHit = true;
+                immunityTime = player.playerDetails.hitImmunityTime;
+                spriteRenderer = player.spriteRenderer;
+            }
         }
         else if (enemy != null)
         {
@@ -55,7 +58,7 @@ public class Health : MonoBehaviour
         if (player != null)
             isRolling = player.playerControl.isPlayerRolling;
 
-        if (isDamageable)
+        if (isDamageable && !isRolling)
         {
             currentHealth -= damageAmount;
             CallHealthEvent(damageAmount);
