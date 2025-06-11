@@ -25,10 +25,17 @@ public class GameResources : MonoBehaviour
     #endregion
     public RoomNodeTypeListSO roomNodeTypeList;
 
+    #region PLAYER SELECTION
+    [Space(10)]
+    [Header("PLAYER SELECTION")]
+    #endregion
+    public GameObject playerSelectionPrefab;
+
     #region Header PLAYER
     [Space(10)]
     [Header("PLAYER")]
     #endregion
+    public List<PlayerDetailsSO> playerDetailsList;
     public CurrentPlayerSO currentPlayer;
 
     #region MATERIALS
@@ -59,6 +66,8 @@ public class GameResources : MonoBehaviour
     private void OnValidate()
     {
         HelperUltilities.ValidateCheckNullValue(this, nameof(roomNodeTypeList), roomNodeTypeList);
+        HelperUltilities.ValidateCheckNullValue(this, nameof(playerSelectionPrefab), playerSelectionPrefab);
+        HelperUltilities.ValidateCheckEnumarableValues(this, nameof(playerDetailsList), playerDetailsList);
         HelperUltilities.ValidateCheckNullValue(this, nameof(currentPlayer), currentPlayer);
         HelperUltilities.ValidateCheckNullValue(this, nameof(litMaterial), litMaterial);
         HelperUltilities.ValidateCheckNullValue(this, nameof(dimmedMaterial), dimmedMaterial);

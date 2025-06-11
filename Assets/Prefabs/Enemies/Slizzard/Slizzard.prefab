@@ -67,6 +67,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slizzard
       objectReference: {fileID: 0}
+    - target: {fileID: 4017007122231829528, guid: 7047ef0561dc9764fbf56855c8a9aea8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.759
+      objectReference: {fileID: 0}
+    - target: {fileID: 4017007122231829528, guid: 7047ef0561dc9764fbf56855c8a9aea8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.448
+      objectReference: {fileID: 0}
     - target: {fileID: 4354570102718373117, guid: 7047ef0561dc9764fbf56855c8a9aea8, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -170,6 +178,14 @@ PrefabInstance:
     - target: {fileID: 7904056132903429453, guid: 7047ef0561dc9764fbf56855c8a9aea8, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[6].y
       value: 1.2652943
+      objectReference: {fileID: 0}
+    - target: {fileID: 8151334688234315434, guid: 7047ef0561dc9764fbf56855c8a9aea8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.717
+      objectReference: {fileID: 0}
+    - target: {fileID: 8151334688234315434, guid: 7047ef0561dc9764fbf56855c8a9aea8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.431
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7047ef0561dc9764fbf56855c8a9aea8, type: 3}

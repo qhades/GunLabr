@@ -1,11 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 
 [DisallowMultipleComponent]
 public class GameManager : SingletonMonobehaviour<GameManager>
 {
+    #region Header GAMEOBJECT REFERENCES
+    [Space(10)]
+    [Header("GAMEOBJECT REFERENCES")]
+    #endregion
+    [SerializeField] private GameObject pauseMenu;
+
     #region Header DUNGEON LEVELS
 
     [Space(10)]
@@ -91,6 +98,51 @@ public class GameManager : SingletonMonobehaviour<GameManager>
                 gameState = GameState.playingLevel;
 
                 break;
+
+            case GameState.playingLevel:
+
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    PauseGameMenu();
+                }
+
+                break;
+
+            case GameState.engagingEnemies:
+
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    PauseGameMenu();
+                }
+
+                break;
+
+            case GameState.bossStage:
+
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    PauseGameMenu();
+                }
+
+                break;
+
+            case GameState.engagingBoss:
+
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    PauseGameMenu();
+                }
+
+                break;
+
+            case GameState.gamePaused:
+
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    PauseGameMenu();
+                }
+
+                break;
         }
     }
 
@@ -98,6 +150,26 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     {
         previousRoom = currentRoom;
         currentRoom = room;
+    }
+
+    public void PauseGameMenu()
+    {
+        if (gameState != GameState.gamePaused)
+        {
+            pauseMenu.SetActive(true);
+            //GetPlayer().playerControl.DisablePlayer();
+
+            previousGameState = gameState;
+            gameState = GameState.gamePaused;
+        }
+        else if (gameState == GameState.gamePaused)
+        {
+            pauseMenu.SetActive(false);
+            //GetPlayer().playerControl.EnablePlayer();
+
+            gameState = previousGameState;
+            previousGameState = GameState.gamePaused;
+        }
     }
 
     private void PlayDungeonLevel(int dungeonLevelListIndex)
@@ -115,6 +187,11 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         player.gameObject.transform.position = new Vector3((currentRoom.lowerBounds.x + currentRoom.upperBounds.x) / 2f, (currentRoom.lowerBounds.y + currentRoom.upperBounds.y) / 2f, 0f);
 
         player.gameObject.transform.position = HelperUltilities.GetSpawnPositionNearestToPlayer(player.gameObject.transform.position);
+    }
+
+    private void RestartGame()
+    {
+        SceneManager.LoadScene("MainMenuScene");
     }
 
     public Player GetPlayer()
@@ -142,6 +219,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 
     private void OnValidate()
     {
+        HelperUltilities.ValidateCheckNullValue(this, nameof(pauseMenu), pauseMenu);
         HelperUltilities.ValidateCheckEnumarableValues(this, nameof(dungeonLevelList), dungeonLevelList);
     }
 

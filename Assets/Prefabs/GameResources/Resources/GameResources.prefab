@@ -44,9 +44,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomNodeTypeList: {fileID: 11400000, guid: d97e156d6aed7a944a95426f26334744, type: 2}
+  playerSelectionPrefab: {fileID: 4044797449903973755, guid: 98aacfb1781925447993848974aa69ec, type: 3}
+  playerDetailsList:
+  - {fileID: 11400000, guid: b9aa86d3f44889d46a9b42c358de645d, type: 2}
+  - {fileID: 11400000, guid: 25c9497c80bd4bd44a7b31496fb5fc98, type: 2}
+  - {fileID: 11400000, guid: 981214bd4514f354ba7c043137d52d24, type: 2}
   currentPlayer: {fileID: 11400000, guid: f0260483b2786884e84dcca2c8f0bb4e, type: 2}
   dimmedMaterial: {fileID: 2100000, guid: fd5ae752e16da36428c7ae98c49dc19e, type: 2}
-  litMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  litMaterial: {fileID: 2100000, guid: a4ea43fe7ddf099428e90d7b7ac44139, type: 2}
   variableLitShader: {fileID: -6465566751694194690, guid: 089470c206a806f44aeee87cc1f9723d, type: 3}
   ammoIconPrefab: {fileID: 3579150918265541688, guid: 67526ee1edf19b54bad19a14c40cd332, type: 3}
   heartPrefab: {fileID: 5939593959479638511, guid: 1734c13c80e2bf840abb16e83d1fe20a, type: 3}

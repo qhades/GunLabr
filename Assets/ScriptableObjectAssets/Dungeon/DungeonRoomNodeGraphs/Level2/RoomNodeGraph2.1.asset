@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7988146924846105245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e6f28fb8221464895db374e9d098ce, type: 3}
+  m_Name: RoomNode
+  m_EditorClassIdentifier: 
+  id: b2aa4776-e530-42c9-a749-362c67f59676
+  parentRoomNodeIDList: []
+  childRoomNodeIDList: []
+  roomNodeGraph: {fileID: 11400000}
+  roomNodeType: {fileID: 11400000, guid: b85304ed9476fda4abb2c95b37dedd8d, type: 2}
+  roomNodeTypeList: {fileID: 11400000, guid: d97e156d6aed7a944a95426f26334744, type: 2}
+  rect:
+    serializedVersion: 2
+    x: 472
+    y: 200
+    width: 160
+    height: 75
+  isLeftClickDragging: 0
+  isSelected: 1
+--- !u!114 &-6275466284124975104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e6f28fb8221464895db374e9d098ce, type: 3}
+  m_Name: RoomNode
+  m_EditorClassIdentifier: 
+  id: 43339375-71cc-4163-9fc8-e04dc4a8534e
+  parentRoomNodeIDList: []
+  childRoomNodeIDList: []
+  roomNodeGraph: {fileID: 11400000}
+  roomNodeType: {fileID: 11400000, guid: 0576dbf077ed2b24591ac324de085ef0, type: 2}
+  roomNodeTypeList: {fileID: 11400000, guid: d97e156d6aed7a944a95426f26334744, type: 2}
+  rect:
+    serializedVersion: 2
+    x: 201
+    y: 200
+    width: 160
+    height: 75
+  isLeftClickDragging: 0
+  isSelected: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e232c7446a775d4fb87a4201943c588, type: 3}
+  m_Name: RoomNodeGraph2.1
+  m_EditorClassIdentifier: 
+  roomNodeTypeList: {fileID: 0}
+  roomNodeList:
+  - {fileID: -6275466284124975104}
+  - {fileID: -7988146924846105245}
+  roomNodeToDrawLineFrom: {fileID: 0}
+  linePosition: {x: 0, y: 0}

@@ -119,6 +119,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Orc_Flesh
       objectReference: {fileID: 0}
+    - target: {fileID: 4017007122231829528, guid: 7047ef0561dc9764fbf56855c8a9aea8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4017007122231829528, guid: 7047ef0561dc9764fbf56855c8a9aea8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4354570102718373117, guid: 7047ef0561dc9764fbf56855c8a9aea8, type: 3}
       propertyPath: m_Sprite
       value: 
