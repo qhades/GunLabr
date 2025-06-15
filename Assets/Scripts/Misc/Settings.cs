@@ -62,6 +62,10 @@ public static class Settings
     public const float uiAmmoIconSpacing = 4f;
     #endregion
 
+    #region CONTACT DAMAGE PARAMETERS
+    public const float contactDamageCollisionResetDelay = 0.5f;
+    #endregion
+
     #region ASTAR PATHFINDING PARAMETERS
     public const int defaultAStarMovementPenalty = 40;
     public const float playerMoveDistanceToRebuildPath = 3f;

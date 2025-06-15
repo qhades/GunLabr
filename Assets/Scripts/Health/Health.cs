@@ -66,15 +66,6 @@ public class Health : MonoBehaviour
             PostHitImmunity();
         }
 
-        if (isDamageable && isRolling)
-        {
-            Debug.Log("Dodged bullets by rolling");
-        }
-
-        if (!isDamageable && !isRolling)
-        {
-            Debug.Log("Avoided Damage Due To Immunity");
-        }
     }
 
     private void PostHitImmunity()
@@ -82,7 +73,7 @@ public class Health : MonoBehaviour
         if (gameObject.activeSelf == false)
             return;
 
-        if (isDamageable)
+        if (isImmuneAfterHit)
         {
             if (immunityCoroutine != null)
                 StopCoroutine(immunityCoroutine);
