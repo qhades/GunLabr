@@ -116,6 +116,8 @@ public class EnemySpawner : SingletonMonobehaviour<EnemySpawner>
 
         currentEnemyCount--;
 
+        StaticEventHandler.CallPointsScoredEvent(destroyedEventArgs.points);
+
         if (currentEnemyCount <= 0 && enemiesSpawnSoFar == enemiesToSpawn)
         {
             currentRoom.isClearedOfEnemies = true;
