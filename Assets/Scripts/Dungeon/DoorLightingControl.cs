@@ -20,7 +20,7 @@ public class DoorLightingControl : MonoBehaviour
         {
             SpriteRenderer[] spriteRendererArray = GetComponentsInParent<SpriteRenderer>();
 
-            foreach(SpriteRenderer spriteRenderer in spriteRendererArray)
+            foreach (SpriteRenderer spriteRenderer in spriteRendererArray)
             {
                 StartCoroutine(FadeInDoorRoutine(spriteRenderer, material));
             }
