@@ -1,7 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.Audio;
 
 public class GameResources : MonoBehaviour
 {
@@ -37,6 +37,15 @@ public class GameResources : MonoBehaviour
     #endregion
     public List<PlayerDetailsSO> playerDetailsList;
     public CurrentPlayerSO currentPlayer;
+
+    #region Header MUSIC
+    [Space(10)]
+    [Header("MUSIC")]
+    #endregion
+    public AudioMixerGroup musicMasterMixerGroup;
+    public AudioMixerSnapshot musicOnFullSnapshot;
+    public AudioMixerSnapshot musicLowSnapshot;
+    public AudioMixerSnapshot musicOffSnapshot;
 
     #region MATERIALS
     [Space(10)]
@@ -74,6 +83,10 @@ public class GameResources : MonoBehaviour
         HelperUltilities.ValidateCheckNullValue(this, nameof(variableLitShader), variableLitShader);
         HelperUltilities.ValidateCheckNullValue(this, nameof(ammoIconPrefab), ammoIconPrefab);
         HelperUltilities.ValidateCheckNullValue(this, nameof(preferredEnemyPathTile), preferredEnemyPathTile);
+        HelperUltilities.ValidateCheckNullValue(this, nameof(musicMasterMixerGroup), musicMasterMixerGroup);
+        HelperUltilities.ValidateCheckNullValue(this, nameof(musicOnFullSnapshot), musicOnFullSnapshot);
+        HelperUltilities.ValidateCheckNullValue(this, nameof(musicLowSnapshot), musicLowSnapshot);
+        HelperUltilities.ValidateCheckNullValue(this, nameof(musicOffSnapshot), musicOffSnapshot);
         HelperUltilities.ValidateCheckEnumarableValues(this, nameof(enemyUnwalkableCollisionTilesArray), enemyUnwalkableCollisionTilesArray);
     }
 #endif

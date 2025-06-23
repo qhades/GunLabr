@@ -50,6 +50,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 25c9497c80bd4bd44a7b31496fb5fc98, type: 2}
   - {fileID: 11400000, guid: 981214bd4514f354ba7c043137d52d24, type: 2}
   currentPlayer: {fileID: 11400000, guid: f0260483b2786884e84dcca2c8f0bb4e, type: 2}
+  musicMasterMixerGroup: {fileID: -7206380732494497733, guid: 2ac509b551addfb48950fbdc0d9cefb4, type: 2}
+  musicOnFullSnapshot: {fileID: 24500006, guid: 2ac509b551addfb48950fbdc0d9cefb4, type: 2}
+  musicLowSnapshot: {fileID: 8893122114324796974, guid: 2ac509b551addfb48950fbdc0d9cefb4, type: 2}
+  musicOffSnapshot: {fileID: -3084740370723268673, guid: 2ac509b551addfb48950fbdc0d9cefb4, type: 2}
   dimmedMaterial: {fileID: 2100000, guid: fd5ae752e16da36428c7ae98c49dc19e, type: 2}
   litMaterial: {fileID: 2100000, guid: a4ea43fe7ddf099428e90d7b7ac44139, type: 2}
   variableLitShader: {fileID: -6465566751694194690, guid: 089470c206a806f44aeee87cc1f9723d, type: 3}

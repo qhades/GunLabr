@@ -49,6 +49,11 @@ public static class Settings
     public const string playerWeapon = "playerWeapon";
     #endregion
 
+    #region AUDIO
+    public const float musicFadeOutTime = 0.5f;
+    public const float musicFadeInTime = 0.5f;
+    #endregion
+
     #region FIRING CONTROL
     public const float useAimAngleDisTance = 3.5f;
     #endregion
